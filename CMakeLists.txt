@@ -39,7 +39,7 @@ add_definitions(-DDEBUG)
 include (FindPerlMore)
 set(CUSTOM_PERL_SITE_ARCH_DIR ${PERL_SITE_ARCH_DIR} CACHE DIR "Custom installation directory for perl binary extension")
 
-include_directories(${PERLQT_INCLUDE_DIR}/perlqt ${SMOKE_INCLUDE_DIR} ${KDE4_INCLUDES})
+include_directories(${PERLQT_INCLUDE_DIR}/perlqt ${SMOKE_INCLUDE_DIR} ${SMOKE_QTCORE_INCLUDE_DIR} ${SMOKE_KDECORE_INCLUDE_DIR} ${KDE4_INCLUDES})
 
 macro_optional_add_bindings(KDE4_FOUND "KDECore" kdecore)
 macro_optional_add_bindings(KDE4_FOUND "KDEUi" kdeui)
