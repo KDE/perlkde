@@ -37,7 +37,11 @@ macro_log_feature(LIBATTICA_FOUND "libattica" "LibAttica" "http://www.kde.org" F
 add_definitions(-DDEBUG)
 
 include (FindPerlMore)
-set(CUSTOM_PERL_SITE_ARCH_DIR ${PERL_SITE_ARCH_DIR} CACHE DIR "Custom installation directory for perl binary extension")
+string(LENGTH "${PERL_INSTALL_PREFIX}" PERL_INSTALL_PREFIX_LEN)
+math(EXPR PERL_INSTALL_PREFIX_LEN "${PERL_INSTALL_PREFIX_LEN}+1")
+string(SUBSTRING ${PERL_SITE_ARCH_DIR} ${PERL_INSTALL_PREFIX_LEN} -1 CUSTOM_PERL_SITE_ARCH_DIR)
+file(TO_NATIVE_PATH "${CMAKE_INSTALL_PREFIX}/${CUSTOM_PERL_SITE_ARCH_DIR}" CUSTOM_PERL_SITE_ARCH_DIR)
+set(CUSTOM_PERL_SITE_ARCH_DIR ${CUSTOM_PERL_SITE_ARCH_DIR} CACHE DIR "Custom installation directory for perl binary extension")
 
 include_directories(${PERLQT_INCLUDE_DIR}/perlqt ${SMOKE_INCLUDE_DIR} ${SMOKE_QTCORE_INCLUDE_DIR} ${SMOKE_KDECORE_INCLUDE_DIR} ${KDE4_INCLUDES})
 
